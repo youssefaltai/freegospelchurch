@@ -61,4 +61,15 @@
   for (var i = 0; i < navLinks.length; i++) {
     navLinks[i].addEventListener('click', handleNavClick);
   }
+
+  // Contact map: 176 East Davis Street, Culpeper, VA 22701
+  var mapEl = document.getElementById('contact-map');
+  if (mapEl && typeof L !== 'undefined') {
+    var map = L.map('contact-map').setView([38.4729, -77.9962], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    L.marker([38.4729, -77.9962]).addTo(map)
+      .bindPopup('Free Gospel Church of Culpeper<br>176 East Davis Street');
+  }
 })();
