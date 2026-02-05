@@ -69,6 +69,16 @@ body {
   background-color: var(--color-bg);
 }
 
+::selection {
+  background: rgba(201, 162, 39, 0.35);
+  color: var(--color-text);
+}
+
+::-moz-selection {
+  background: rgba(201, 162, 39, 0.35);
+  color: var(--color-text);
+}
+
 .skip-link {
   position: absolute;
   top: -3rem;
