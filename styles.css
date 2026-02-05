@@ -247,6 +247,10 @@ body {
   padding: var(--space-2xl) var(--space-md);
 }
 
+#theme {
+  background: var(--color-white);
+}
+
 .content-section--alt {
   background: var(--color-bg-alt);
 }
@@ -279,47 +283,42 @@ body {
   margin-bottom: 0;
 }
 
-/* Mission: lead-style paragraph */
-#mission .section-inner > p {
+/* Mission & Vision: merged section, two-column layout */
+.content-section--mission-vision {
+  background: var(--color-bg);
+}
+
+.content-section--mission-vision .section-inner--mission-vision {
+  max-width: 100%;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.mission-vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: start;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.mission-vision-block {
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.mission-vision-block:first-child {
+  border-right: 1px solid rgba(201, 162, 39, 0.35);
+}
+
+.mission-vision-block h2 {
+  margin-bottom: var(--space-md);
+}
+
+.mission-vision-block p {
+  margin: 0;
   font-size: var(--text-lg);
   line-height: 1.75;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
-
-/* Vision: flowing timeline (no bullets) */
-.vision-flow {
-  margin-top: var(--space-lg);
-  position: relative;
-  padding-left: 2rem;
-  border-left: 3px solid var(--color-gold);
-}
-
-.vision-block {
-  position: relative;
-  margin-bottom: var(--space-lg);
-}
-
-.vision-block:last-child {
-  margin-bottom: 0;
-}
-
-.vision-dot {
-  position: absolute;
-  left: -2rem;
-  top: 0.5em;
-  width: 12px;
-  height: 12px;
-  margin-left: -7.5px;
-  background: var(--color-purple);
-  border-radius: 50%;
-  border: 2px solid var(--color-bg-alt);
-}
-
-.vision-block p {
-  margin: 0;
-  font-size: var(--text-base);
-  line-height: 1.7;
   color: var(--color-text);
 }
 
@@ -369,6 +368,14 @@ body {
 }
 
 /* Core beliefs */
+#beliefs h2 {
+  font-size: var(--text-4xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom-width: 3px;
+  display: inline-block;
+}
+
 .beliefs-intro {
   margin: 0 0 var(--space-lg);
   font-size: var(--text-lg);
@@ -410,27 +417,66 @@ body {
 }
 
 .belief-lead {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
   font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.25;
   color: var(--color-purple);
-  letter-spacing: 0.02em;
+  margin-bottom: 0.35em;
 }
 
-/* Leadership: editorial (no cards) */
-.leadership-editorial {
+/* Leadership: side-by-side with placeholder images */
+.leadership-grid {
   margin-top: var(--space-lg);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-xl);
+  align-items: start;
 }
 
 .leader-block {
-  padding-bottom: var(--space-xl);
-  border-bottom: 1px solid rgba(74, 25, 66, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.leader-block:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
+.leader-photo-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  border-radius: 8px 8px 0 0;
+}
+
+.leader-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.leader-photo-placeholder-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-white);
+  background: rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.leader-info {
+  padding: var(--space-md);
+  background: var(--color-white);
+  border: 1px solid rgba(74, 25, 66, 0.1);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
 }
 
 .leader-name {
@@ -704,6 +750,24 @@ body {
   .belief-item--wide {
     grid-column: span 1;
   }
+
+  .mission-vision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-vision-block:first-child {
+    border-right: none;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.35);
+    padding-bottom: var(--space-xl);
+  }
+
+  .mission-vision-block {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .leadership-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Tablet: logo + title max 2 lines, never overflow nav */
@@ -730,6 +794,10 @@ body {
 
   .content-section h2 {
     font-size: var(--text-4xl);
+  }
+
+  #beliefs h2 {
+    font-size: 2.75rem;
   }
 
   .theme-journey {
@@ -776,6 +844,10 @@ body {
 
 /* Desktop: one row, logo + title (max 2 lines) + nav; brand capped so nav always fits */
 @media (min-width: 1024px) {
+  #beliefs h2 {
+    font-size: 3rem;
+  }
+
   .beliefs-bento {
     grid-template-columns: repeat(3, 1fr);
   }
