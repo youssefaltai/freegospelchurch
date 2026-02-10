@@ -138,13 +138,6 @@
 
 /* ----- Hero ----- */
 .hero {
-  background-image:
-    linear-gradient(
-      to bottom,
-      rgba(26, 26, 26, 0.65) 0%,
-      rgba(26, 26, 26, 0.82) 100%
-    ),
-    url("/assets/church.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

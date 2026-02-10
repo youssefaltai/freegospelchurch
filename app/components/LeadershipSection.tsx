@@ -1,5 +1,7 @@
 import Image from "next/image";
 import styles from "../Home.module.css";
+import haroldPhoto from "../../public/assets/harold.jpeg";
+import margaretPhoto from "../../public/assets/margaret.jpeg";
 
 export function LeadershipSection() {
   return (
@@ -10,7 +12,7 @@ export function LeadershipSection() {
           <article className={styles["leader-block"]}>
             <div className={styles["leader-photo-wrap"]}>
               <Image
-                src="/assets/harold.jpeg"
+                src={haroldPhoto}
                 alt="Bishop Harold B. Smith"
                 className={styles["leader-photo"]}
                 width={320}
@@ -33,7 +35,7 @@ export function LeadershipSection() {
           <article className={styles["leader-block"]}>
             <div className={styles["leader-photo-wrap"]}>
               <Image
-                src="/assets/margaret.jpeg"
+                src={margaretPhoto}
                 alt="Margaret L. Smith"
                 className={styles["leader-photo"]}
                 width={320}
@@ -46,7 +48,9 @@ export function LeadershipSection() {
                 The motherly example who sets the atmosphere at the church. She
                 has labored tirelessly for the Lord beside her husband, devoted
                 to praying for and with souls. Her spirit of hospitality is
-                known to all.
+                known to all. My prayers to God are that all mankind accepts and
+                receive Jesus Christ as their personal savior and to know that
+                he is a God of Love, Mercy, and Grace.
               </p>
             </div>
           </article>

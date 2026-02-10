@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import logo from "../../public/assets/logo.png";
 import styles from "../Home.module.css";
 
 type HeaderProps = {
@@ -10,13 +12,13 @@ export function Header({ variant = "full" }: HeaderProps) {
     <header className={styles["site-header"]}>
       <div className={styles["header-inner"]}>
         <div className={styles["header-brand"]}>
-          <a
-            href="#hero"
+          <Link
+            href="/"
             className={styles["logo-link"]}
             aria-label="Free Gospel Church of Culpeper home"
           >
             <Image
-              src="/assets/logo.png"
+              src={logo}
               alt=""
               width={72}
               height={72}
@@ -26,13 +28,13 @@ export function Header({ variant = "full" }: HeaderProps) {
             <h1 className={styles["church-name"]}>
               Free Gospel Church of Culpeper, Inc.
             </h1>
-          </a>
+          </Link>
         </div>
         <nav className={styles["main-nav"]} aria-label="Main navigation">
           {variant === "simple" ? (
             <ul>
               <li>
-                <a href="/">Home</a>
+                <Link href="/">Home</Link>
               </li>
             </ul>
           ) : (
@@ -53,7 +55,8 @@ export function Header({ variant = "full" }: HeaderProps) {
                 <a href="#leadership">Leadership</a>
               </li>
               <li>
-                <a href="/contact-us">Contact Us</a>
+                {/* Use Next.js Link so basePath is applied automatically */}
+                <Link href="/contact-us">Contact Us</Link>
               </li>
             </ul>
           )}
