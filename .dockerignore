@@ -1,0 +1,16 @@
+# Legacy static site (not part of Next.js build)
+legacy
+
+# Git and IDE
+.git
+.cursor
+.gitignore
+
+# Dependencies and build output (reinstalled/built in image)
+node_modules
+.next
+
+# Misc
+.DS_Store
+*.md
+!README.md

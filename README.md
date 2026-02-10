@@ -1,33 +1,34 @@
-# Free Gospel Church site
+# Free Gospel Church of Culpeper, Inc.
 
-This is a static website for Free Gospel Church of Culpeper, deployed as a Dockerized app and served under the subpath:
+Next.js site for Free Gospel Church of Culpeper.
 
-- `https://youssefaltai.com/haroldbsmith/freegospelchurch/`
+## Local development
 
-## Local / VPS usage
+```bash
+pnpm install
+pnpm dev
+```
 
-The site is served by a simple Node-based static file server inside a container, listening on port **3000**, and fronted by a central Caddy reverse proxy (in the separate `infra` stack).
+Open [http://localhost:3000](http://localhost:3000).
 
-To (re)build and start the container on the VPS:
+## Production build
+
+```bash
+pnpm build
+pnpm start
+```
+
+## Docker
+
+Build and run with Docker (port 3000):
 
 ```bash
 docker compose up -d --build
 ```
 
-This:
+The image uses a multi-stage build: installs dependencies, runs `next build`, then runs `next start` in a minimal runtime image.
 
-- Builds the image from the local `Dockerfile`.
-- Runs the `freegospelchurch` service on the external Docker network `web`.
-- Exposes the app internally on port **3000**.
+## Project layout
 
-The central Caddy instance (in `~/infra`) is responsible for:
-
-- Listening on ports 80/443.
-- Proxying `/haroldbsmith/freegospelchurch/*` to `freegospelchurch:3000`.
-
-## Files
-
-- `Dockerfile`: builds a Node 20 Alpine image and serves the static site via `serve` on port 3000.
-- `docker-compose.yml`: defines the `freegospelchurch` service attached to the `web` network.
-- `index.html`, `styles.css`, `script.js`, `assets/`: the static site content.
-
+- `app/` — Next.js App Router (pages, layout, components, styles)
+- `public/` — Static assets (images under `public/assets/`)
