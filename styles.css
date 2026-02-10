@@ -104,9 +104,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--color-black);
-  color: var(--color-white);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  background: var(--color-white);
+  color: var(--color-text);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .header-inner {
@@ -149,7 +149,7 @@ body {
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-purple);
   min-width: 0;
   /* Always max 2 lines; min width avoids one-word-per-line at midway sizes */
   display: -webkit-box;
@@ -177,7 +177,7 @@ body {
 
 .main-nav a {
   position: relative;
-  color: var(--color-gold-light);
+  color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -194,14 +194,14 @@ body {
   right: var(--space-sm);
   bottom: 2px;
   height: 1px;
-  background: var(--color-gold-light);
+  background: var(--color-purple);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.22s ease;
 }
 
 .main-nav a:hover {
-  color: var(--color-white);
+  color: var(--color-purple);
 }
 
 .main-nav a:hover::after {
@@ -209,8 +209,8 @@ body {
 }
 
 .main-nav a:focus-visible {
-  color: var(--color-white);
-  outline: 2px solid var(--color-gold-light);
+  color: var(--color-purple);
+  outline: 2px solid var(--color-purple);
   outline-offset: 2px;
 }
 
@@ -225,7 +225,7 @@ body {
       rgba(26, 26, 26, 0.65) 0%,
       rgba(26, 26, 26, 0.82) 100%
     ),
-    url("assets/church.jpg");
+    url("assets/chruch.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
