@@ -2,7 +2,7 @@ import styles from "../Home.module.css";
 import { Header } from "../components/Header";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
-import heroBackground from "../../public/assets/church.jpeg";
+import heroBackground from "../../public/assets/church.png";
 
 export default function ContactUsPage() {
   return (

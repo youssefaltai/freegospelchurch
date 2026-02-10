@@ -1,5 +1,5 @@
 import styles from "../Home.module.css";
-import heroBackground from "../../public/assets/church.jpeg";
+import heroBackground from "../../public/assets/church.png";
 
 export function HeroSection() {
   return (
