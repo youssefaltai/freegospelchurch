@@ -1,0 +1,196 @@
+.giving-container {
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--color-white);
+}
+
+.giving-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.giving-title {
+  margin: 0 0 var(--space-lg) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-purple);
+  border-bottom: 2px solid var(--color-gold);
+  padding-bottom: var(--space-sm);
+  display: inline-block;
+}
+
+.giving-intro {
+  max-width: 42ch;
+  margin: var(--space-lg) 0 var(--space-xl) 0;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.methods-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.method-card {
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 3px solid var(--color-gold);
+}
+
+.method-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(74, 25, 66, 0.12);
+  border-bottom-color: var(--color-purple-light);
+}
+
+.method-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(74, 25, 66, 0.08);
+  border-radius: 8px;
+  color: var(--color-purple);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.method-title {
+  margin: 0 0 var(--space-sm) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-purple);
+  letter-spacing: var(--tracking-tight);
+}
+
+.method-description {
+  margin: 0 0 var(--space-md) 0;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.75;
+  flex-grow: 1;
+}
+
+.method-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: var(--color-purple);
+  border-radius: 6px;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.method-button:hover {
+  background: var(--color-purple-light);
+}
+
+.method-button:focus-visible {
+  background: var(--color-purple-light);
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.method-button:active {
+  transform: scale(0.98);
+}
+
+.info-section {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--color-bg-alt);
+  border-radius: 8px;
+  border-left: 1px solid rgba(201, 162, 39, 0.35);
+}
+
+.info-title {
+  margin: 0 0 var(--space-sm) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-purple);
+  letter-spacing: var(--tracking-tight);
+}
+
+.info-text {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+.info-link {
+  position: relative;
+  color: var(--color-purple);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.22s ease;
+}
+
+.info-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  height: 1px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.22s ease;
+}
+
+.info-link:hover {
+  color: var(--color-purple-light);
+}
+
+.info-link:hover::after {
+  transform: scaleX(1);
+}
+
+@media (min-width: 640px) {
+  .methods-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .methods-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .giving-container {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .giving-title {
+    font-size: var(--text-3xl);
+  }
+}

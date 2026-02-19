@@ -3,11 +3,7 @@ import Link from "next/link";
 import logo from "../../public/assets/logo.png";
 import styles from "../Home.module.css";
 
-type HeaderProps = {
-  variant?: "full" | "simple";
-};
-
-export function Header({ variant = "full" }: HeaderProps) {
+export function Header() {
   return (
     <header className={styles["site-header"]}>
       <div className={styles["header-inner"]}>
@@ -31,35 +27,23 @@ export function Header({ variant = "full" }: HeaderProps) {
           </Link>
         </div>
         <nav className={styles["main-nav"]} aria-label="Main navigation">
-          {variant === "simple" ? (
-            <ul>
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-            </ul>
-          ) : (
-            <ul>
-              <li>
-                <a href="#mission">Mission</a>
-              </li>
-              <li>
-                <a href="#vision">Vision</a>
-              </li>
-              <li>
-                <a href="#theme">Gather, Grow, Go</a>
-              </li>
-              <li>
-                <a href="#beliefs">Beliefs</a>
-              </li>
-              <li>
-                <a href="#leadership">Leadership</a>
-              </li>
-              <li>
-                {/* Use Next.js Link so basePath is applied automatically */}
-                <Link href="/contact-us">Contact Us</Link>
-              </li>
-            </ul>
-          )}
+          <ul>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/coming-up">Coming Up</Link>
+            </li>
+            <li>
+              <Link href="/giving">Giving</Link>
+            </li>
+            <li>
+              <Link href="/extra">Prayer Requests</Link>
+            </li>
+            <li>
+              <Link href="/contact-us">Contact</Link>
+            </li>
+          </ul>
         </nav>
       </div>
     </header>

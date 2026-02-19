@@ -1,0 +1,114 @@
+.events-container {
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--color-white);
+}
+
+.events-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.events-title {
+  margin: 0 0 var(--space-lg) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-purple);
+  border-bottom: 2px solid var(--color-gold);
+  padding-bottom: var(--space-sm);
+  display: inline-block;
+}
+
+.events-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.event-card {
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom: 3px solid var(--color-gold);
+  border-radius: 8px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(74, 25, 66, 0.12);
+  border-bottom-color: var(--color-purple-light);
+}
+
+.event-header {
+  margin-bottom: var(--space-md);
+}
+
+.event-title {
+  margin: 0 0 var(--space-sm) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-purple);
+  letter-spacing: var(--tracking-tight);
+}
+
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.event-date,
+.event-time {
+  display: block;
+}
+
+.event-details {
+  margin-top: var(--space-md);
+}
+
+.event-location {
+  margin: 0 0 var(--space-sm) 0;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+.event-location strong {
+  color: var(--color-purple);
+  font-weight: 700;
+}
+
+.event-description {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+@media (min-width: 640px) {
+  .events-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .event-meta {
+    flex-direction: row;
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 639px) {
+  .events-container {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .events-title {
+    font-size: var(--text-3xl);
+  }
+}

@@ -1,0 +1,219 @@
+.prayer-container {
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--color-white);
+}
+
+.prayer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.prayer-title {
+  margin: 0 0 var(--space-lg) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-purple);
+  border-bottom: 2px solid var(--color-gold);
+  padding-bottom: var(--space-sm);
+  display: inline-block;
+}
+
+.prayer-intro {
+  max-width: 42ch;
+  margin: var(--space-lg) 0 var(--space-xl) 0;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.prayer-form {
+  max-width: 600px;
+  margin: 0 0 var(--space-xl) 0;
+  background: rgba(255, 255, 255, 0.7);
+  padding: var(--space-lg);
+  border-radius: 8px;
+  border: 1px solid rgba(74, 25, 66, 0.1);
+}
+
+.form-group {
+  margin-bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group:last-of-type {
+  margin-bottom: var(--space-xl);
+}
+
+.form-label {
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-purple);
+  letter-spacing: var(--tracking-tight);
+}
+
+.form-input,
+.form-textarea {
+  padding: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-white);
+  border: 2px solid rgba(74, 25, 66, 0.15);
+  border-radius: 4px;
+  transition: border-color 0.22s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 150px;
+  font-size: var(--text-base);
+}
+
+.form-button {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-purple);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.form-button:hover {
+  background: var(--color-purple-light);
+}
+
+.form-button:active {
+  transform: scale(0.98);
+}
+
+.form-button:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  background: var(--color-purple-light);
+}
+
+/* Success Message */
+.success-message {
+  max-width: 600px;
+  margin: 0 0 var(--space-xl) 0;
+  padding: var(--space-xl);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border: 2px solid var(--color-gold);
+  text-align: center;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto var(--space-md) auto;
+  background: var(--color-gold);
+  color: var(--color-black);
+  font-size: 1.5rem;
+  border-radius: 50%;
+  font-weight: 700;
+  font-family: var(--font-body);
+}
+
+.success-title {
+  margin: 0 0 var(--space-sm) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-purple);
+  letter-spacing: var(--tracking-tight);
+}
+
+.success-text {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+/* Info Section */
+.info-section {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--color-bg-alt);
+  border-radius: 8px;
+  border-left: 1px solid rgba(201, 162, 39, 0.35);
+}
+
+.info-title {
+  margin: 0 0 var(--space-md) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-purple);
+  letter-spacing: var(--tracking-tight);
+}
+
+.info-list {
+  margin: 0;
+  padding-left: var(--space-lg);
+  list-style: disc;
+}
+
+.info-list li {
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+.info-list li:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 639px) {
+  .prayer-container {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .prayer-title {
+    font-size: var(--text-3xl);
+  }
+
+  .prayer-form {
+    padding: var(--space-md);
+  }
+}
