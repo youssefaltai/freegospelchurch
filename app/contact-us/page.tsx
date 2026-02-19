@@ -11,7 +11,7 @@ export default function ContactUsPage() {
         Skip to main content
       </a>
 
-      <Header variant="simple" />
+      <Header />
 
       <main>
         <section
