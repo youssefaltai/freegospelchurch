@@ -10,13 +10,24 @@ import { FormEvent, useState } from "react";
 export default function ExtraPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    type: "request" as "request" | "praise",
+    intendedFor: "group" as "group" | "everyone",
+    description: "",
+    firstName: "",
+    lastName: "",
+    streetAddress: "",
+    otherAddress: "",
+    city: "",
+    state: "",
+    zipPostal: "",
+    country: "United States",
+    region: "",
+    phone: "",
     email: "",
-    request: "",
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -25,12 +36,34 @@ export default function ExtraPage() {
     }));
   };
 
+  const handleRadioChange = (fieldName: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [fieldName]: value,
+    }));
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // For now, just show success message
     // In the future, you can connect this to a backend
     setIsSubmitted(true);
-    setFormData({ name: "", email: "", request: "" });
+    setFormData({
+      type: "request",
+      intendedFor: "group",
+      description: "",
+      firstName: "",
+      lastName: "",
+      streetAddress: "",
+      otherAddress: "",
+      city: "",
+      state: "",
+      zipPostal: "",
+      country: "United States",
+      region: "",
+      phone: "",
+      email: "",
+    });
     // Reset form after 5 seconds
     setTimeout(() => {
       setIsSubmitted(false);
@@ -68,20 +101,22 @@ export default function ExtraPage() {
             <h2 className={extraStyles["prayer-title"]}>Prayer Requests</h2>
 
             <p className={extraStyles["prayer-intro"]}>
-              We believe in the power of prayer. If you have a prayer request,
-              please share it with us. Our prayer team and community will lift
-              your request up to God.
+              If you are in need of prayer, or have something exciting that you
+              want to share with the ministry, we welcome you to do that here.
+              You can make your posts public or private. All prayer requests,
+              anonymous or not, will be sent to our Prayer Team for prayer, and
+              if requested, the Ministerial team may also follow up with you.
             </p>
 
             {isSubmitted ? (
               <div className={extraStyles["success-message"]}>
                 <div className={extraStyles["success-icon"]}>Done</div>
                 <h3 className={extraStyles["success-title"]}>
-                  Thank you for your prayer request!
+                  Thank you for your submission!
                 </h3>
                 <p className={extraStyles["success-text"]}>
                   We have received your request and our community will be
-                  praying for you. God bless you.
+                  praying with you. God bless you.
                 </p>
               </div>
             ) : (
@@ -90,73 +125,307 @@ export default function ExtraPage() {
                 onSubmit={handleSubmit}
               >
                 <div className={extraStyles["form-group"]}>
-                  <label htmlFor="name" className={extraStyles["form-label"]}>
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className={extraStyles["form-input"]}
-                    placeholder="Enter your name"
-                  />
+                  <fieldset className={extraStyles["radio-group"]}>
+                    <legend className={extraStyles["form-label"]}>Type</legend>
+                    <div className={extraStyles["radio-option"]}>
+                      <input
+                        type="radio"
+                        id="type-request"
+                        name="type"
+                        value="request"
+                        checked={formData.type === "request"}
+                        onChange={(e) =>
+                          handleRadioChange("type", e.target.value)
+                        }
+                        className={extraStyles["radio-input"]}
+                      />
+                      <label
+                        htmlFor="type-request"
+                        className={extraStyles["radio-label"]}
+                      >
+                        Prayer Request
+                      </label>
+                    </div>
+                    <div className={extraStyles["radio-option"]}>
+                      <input
+                        type="radio"
+                        id="type-praise"
+                        name="type"
+                        value="praise"
+                        checked={formData.type === "praise"}
+                        onChange={(e) =>
+                          handleRadioChange("type", e.target.value)
+                        }
+                        className={extraStyles["radio-input"]}
+                      />
+                      <label
+                        htmlFor="type-praise"
+                        className={extraStyles["radio-label"]}
+                      >
+                        Praise Report
+                      </label>
+                    </div>
+                  </fieldset>
                 </div>
 
                 <div className={extraStyles["form-group"]}>
-                  <label htmlFor="email" className={extraStyles["form-label"]}>
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className={extraStyles["form-input"]}
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-
-                <div className={extraStyles["form-group"]}>
-                  <label htmlFor="request" className={extraStyles["form-label"]}>
-                    Your Prayer Request
+                  <label htmlFor="description" className={extraStyles["form-label"]}>
+                    Description <span className={extraStyles["required"]}>*</span>
                   </label>
                   <textarea
-                    id="request"
-                    name="request"
-                    value={formData.request}
+                    id="description"
+                    name="description"
+                    value={formData.description}
                     onChange={handleChange}
                     required
                     rows={6}
                     className={extraStyles["form-textarea"]}
-                    placeholder="Please share your prayer request..."
+                    placeholder={
+                      formData.type === "request"
+                        ? "Please share your prayer request..."
+                        : "Please share your praise report..."
+                    }
                   />
+                </div>
+
+                <div className={extraStyles["form-group"]}>
+                  <fieldset className={extraStyles["radio-group"]}>
+                    <legend className={extraStyles["form-label"]}>
+                      Intended For <span className={extraStyles["required"]}>*</span>
+                    </legend>
+                    <div className={extraStyles["radio-option"]}>
+                      <input
+                        type="radio"
+                        id="intended-group"
+                        name="intendedFor"
+                        value="group"
+                        checked={formData.intendedFor === "group"}
+                        onChange={(e) =>
+                          handleRadioChange("intendedFor", e.target.value)
+                        }
+                        className={extraStyles["radio-input"]}
+                      />
+                      <label
+                        htmlFor="intended-group"
+                        className={extraStyles["radio-label"]}
+                      >
+                        Appropriate Prayer Group
+                      </label>
+                    </div>
+                    <div className={extraStyles["radio-option"]}>
+                      <input
+                        type="radio"
+                        id="intended-everyone"
+                        name="intendedFor"
+                        value="everyone"
+                        checked={formData.intendedFor === "everyone"}
+                        onChange={(e) =>
+                          handleRadioChange("intendedFor", e.target.value)
+                        }
+                        className={extraStyles["radio-input"]}
+                      />
+                      <label
+                        htmlFor="intended-everyone"
+                        className={extraStyles["radio-label"]}
+                      >
+                        Everyone
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
+
+                <div className={extraStyles["form-section-title"]}>
+                  Contact Information
+                </div>
+
+                <div className={extraStyles["form-row"]}>
+                  <div className={extraStyles["form-group"]}>
+                    <label htmlFor="firstName" className={extraStyles["form-label"]}>
+                      First Name <span className={extraStyles["required"]}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      required
+                      className={extraStyles["form-input"]}
+                      placeholder="First name"
+                    />
+                  </div>
+
+                  <div className={extraStyles["form-group"]}>
+                    <label htmlFor="lastName" className={extraStyles["form-label"]}>
+                      Last Name <span className={extraStyles["required"]}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
+                      className={extraStyles["form-input"]}
+                      placeholder="Last name"
+                    />
+                  </div>
+                </div>
+
+                <div className={extraStyles["form-group"]}>
+                  <label htmlFor="streetAddress" className={extraStyles["form-label"]}>
+                    Street Address
+                  </label>
+                  <input
+                    type="text"
+                    id="streetAddress"
+                    name="streetAddress"
+                    value={formData.streetAddress}
+                    onChange={handleChange}
+                    className={extraStyles["form-input"]}
+                    placeholder="Street address"
+                  />
+                </div>
+
+                <div className={extraStyles["form-group"]}>
+                  <label htmlFor="otherAddress" className={extraStyles["form-label"]}>
+                    Other Address
+                  </label>
+                  <input
+                    type="text"
+                    id="otherAddress"
+                    name="otherAddress"
+                    value={formData.otherAddress}
+                    onChange={handleChange}
+                    className={extraStyles["form-input"]}
+                    placeholder="Apt, suite, etc."
+                  />
+                </div>
+
+                <div className={extraStyles["form-row-3"]}>
+                  <div className={extraStyles["form-group"]}>
+                    <label htmlFor="city" className={extraStyles["form-label"]}>
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      className={extraStyles["form-input"]}
+                      placeholder="City"
+                    />
+                  </div>
+
+                  <div className={extraStyles["form-group"]}>
+                    <label htmlFor="state" className={extraStyles["form-label"]}>
+                      State/Province
+                    </label>
+                    <input
+                      type="text"
+                      id="state"
+                      name="state"
+                      value={formData.state}
+                      onChange={handleChange}
+                      className={extraStyles["form-input"]}
+                      placeholder="State or Province"
+                    />
+                  </div>
+
+                  <div className={extraStyles["form-group"]}>
+                    <label htmlFor="zipPostal" className={extraStyles["form-label"]}>
+                      Zip/Postal
+                    </label>
+                    <input
+                      type="text"
+                      id="zipPostal"
+                      name="zipPostal"
+                      value={formData.zipPostal}
+                      onChange={handleChange}
+                      className={extraStyles["form-input"]}
+                      placeholder="Zip/Postal code"
+                    />
+                  </div>
+                </div>
+
+                <div className={extraStyles["form-row"]}>
+                  <div className={extraStyles["form-group"]}>
+                    <label htmlFor="country" className={extraStyles["form-label"]}>
+                      Country
+                    </label>
+                    <select
+                      id="country"
+                      name="country"
+                      value={formData.country}
+                      onChange={handleChange}
+                      className={extraStyles["form-input"]}
+                    >
+                      <option value="United States">United States</option>
+                      <option value="Canada">Canada</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div className={extraStyles["form-group"]}>
+                    <label htmlFor="region" className={extraStyles["form-label"]}>
+                      Region
+                    </label>
+                    <input
+                      type="text"
+                      id="region"
+                      name="region"
+                      value={formData.region}
+                      onChange={handleChange}
+                      className={extraStyles["form-input"]}
+                      placeholder="Region (optional)"
+                    />
+                  </div>
+                </div>
+
+                <div className={extraStyles["form-row"]}>
+                  <div className={extraStyles["form-group"]}>
+                    <label htmlFor="phone" className={extraStyles["form-label"]}>
+                      Phone
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className={extraStyles["form-input"]}
+                      placeholder="Phone number"
+                    />
+                  </div>
+
+                  <div className={extraStyles["form-group"]}>
+                    <label htmlFor="email" className={extraStyles["form-label"]}>
+                      Email Address <span className={extraStyles["required"]}>*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className={extraStyles["form-input"]}
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
                 </div>
 
                 <button
                   type="submit"
                   className={extraStyles["form-button"]}
                 >
-                  Submit Prayer Request
+                  Submit
                 </button>
               </form>
             )}
-
-            <section className={extraStyles["info-section"]}>
-              <h3 className={extraStyles["info-title"]}>
-                How We Handle Your Request
-              </h3>
-              <ul className={extraStyles["info-list"]}>
-                <li>Your request is kept confidential</li>
-                <li>Our prayer team reviews all submissions</li>
-                <li>We will pray for your request regularly</li>
-                <li>You may receive updates via email if you request them</li>
-              </ul>
-            </section>
           </div>
         </section>
       </main>

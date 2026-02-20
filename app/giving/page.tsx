@@ -1,54 +1,52 @@
+"use client";
+
 import styles from "../Home.module.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import heroBackground from "../../public/assets/church.png";
 import givingStyles from "./Giving.module.css";
-
-interface GivingMethod {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
-  action: string;
-  href?: string;
-}
-
-const givingMethods: GivingMethod[] = [
-  {
-    id: 1,
-    title: "Online Giving",
-    description: "Give securely through our online giving platform.",
-    icon: "",
-    action: "Give Online",
-    href: "#", // Replace with actual link
-  },
-  {
-    id: 2,
-    title: "Venmo",
-    description: "Send your gift directly through Venmo.",
-    icon: "",
-    action: "Give via Venmo",
-    href: "#", // Replace with actual Venmo link
-  },
-  {
-    id: 3,
-    title: "PayPal",
-    description: "Donate securely using your PayPal account.",
-    icon: "",
-    action: "Give via PayPal",
-    href: "#", // Replace with actual PayPal link
-  },
-  {
-    id: 4,
-    title: "Bank Transfer",
-    description: "Set up automatic giving or send a one-time transfer.",
-    icon: "",
-    action: "Learn More",
-    href: "#", // Replace with contact info
-  },
-];
+import { FormEvent, useState } from "react";
 
 export default function GivingPage() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    amount: "",
+    givingType: "tithe" as "tithe" | "offering",
+    name: "",
+    email: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleGivingTypeChange = (givingType: "tithe" | "offering") => {
+    setFormData((prev) => ({
+      ...prev,
+      givingType,
+    }));
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // For now, just show success message
+    // In the future, you can connect this to a backend
+    setIsSubmitted(true);
+    setFormData({
+      amount: "",
+      givingType: "tithe",
+      name: "",
+      email: "",
+    });
+    // Reset form after 5 seconds
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 5000);
+  };
   return (
     <>
       <a href="#hero" className={styles["skip-link"]}>
@@ -77,49 +75,118 @@ export default function GivingPage() {
 
         <section className={givingStyles["giving-container"]}>
           <div className={givingStyles["giving-inner"]}>
-            <h2 className={givingStyles["giving-title"]}>Ways to Give</h2>
+            <h2 className={givingStyles["giving-title"]}>Give Now</h2>
 
             <p className={givingStyles["giving-intro"]}>
-              Thank you for prayerfully considering how you can support the
-              ministry of Free Gospel Church. Whether through online giving,
-              mobile payment, or traditional methods, your contribution makes a
-              difference in our community.
+              Your giving allows our ministry to continue supporting the
+              community and the church's operations. Through your giving, we're
+              able to continue providing services that can assist you and your
+              family, and persons that may be in need.
             </p>
 
-            <div className={givingStyles["methods-grid"]}>
-              {givingMethods.map((method) => (
-                <div key={method.id} className={givingStyles["method-card"]}>
-                  <div className={givingStyles["method-icon"]}>
-                    {method.icon}
+            {isSubmitted ? (
+              <div className={givingStyles["success-message"]}>
+                <div className={givingStyles["success-icon"]}>Done</div>
+                <h3 className={givingStyles["success-title"]}>
+                  Thank you for your gift!
+                </h3>
+                <p className={givingStyles["success-text"]}>
+                  We have received your contribution. Your generosity will make
+                  a real difference in our ministry. God bless you.
+                </p>
+              </div>
+            ) : (
+              <form
+                className={givingStyles["giving-form"]}
+                onSubmit={handleSubmit}
+              >
+                <div className={givingStyles["form-group"]}>
+                  <label htmlFor="amount" className={givingStyles["form-label"]}>
+                    Amount
+                  </label>
+                  <div className={givingStyles["amount-group"]}>
+                    <span className={givingStyles["amount-prefix"]}>$</span>
+                    <input
+                      type="number"
+                      id="amount"
+                      name="amount"
+                      value={formData.amount}
+                      onChange={handleChange}
+                      required
+                      step="0.01"
+                      min="0"
+                      className={givingStyles["form-input"]}
+                      placeholder="0.00"
+                    />
                   </div>
-                  <h3 className={givingStyles["method-title"]}>
-                    {method.title}
-                  </h3>
-                  <p className={givingStyles["method-description"]}>
-                    {method.description}
-                  </p>
-                  <a
-                    href={method.href}
-                    className={givingStyles["method-button"]}
-                  >
-                    {method.action}
-                  </a>
                 </div>
-              ))}
-            </div>
 
-            <section className={givingStyles["info-section"]}>
-              <h3 className={givingStyles["info-title"]}>Questions?</h3>
-              <p className={givingStyles["info-text"]}>
-                If you have questions about giving or need assistance, please
-                don&apos;t hesitate to{" "}
-                <a href="/contact-us" className={givingStyles["info-link"]}>
-                  contact us
-                </a>
-                . All gifts are tax-deductible. Free Gospel Church is a
-                501(c)(3) non-profit organization.
-              </p>
-            </section>
+                <div className={givingStyles["form-group"]}>
+                  <label className={givingStyles["form-label"]}>Type</label>
+                  <div className={givingStyles["toggle-group"]}>
+                    <button
+                      type="button"
+                      className={`${givingStyles["toggle-btn"]} ${
+                        formData.givingType === "tithe"
+                          ? givingStyles["active"]
+                          : ""
+                      }`}
+                      onClick={() => handleGivingTypeChange("tithe")}
+                    >
+                      Tithes
+                    </button>
+                    <button
+                      type="button"
+                      className={`${givingStyles["toggle-btn"]} ${
+                        formData.givingType === "offering"
+                          ? givingStyles["active"]
+                          : ""
+                      }`}
+                      onClick={() => handleGivingTypeChange("offering")}
+                    >
+                      Offering
+                    </button>
+                  </div>
+                </div>
+
+                <div className={givingStyles["form-group"]}>
+                  <label htmlFor="name" className={givingStyles["form-label"]}>
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className={givingStyles["form-input"]}
+                    placeholder="Enter your name"
+                  />
+                </div>
+
+                <div className={givingStyles["form-group"]}>
+                  <label htmlFor="email" className={givingStyles["form-label"]}>
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={givingStyles["form-input"]}
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className={givingStyles["form-button"]}
+                >
+                  Give Now
+                </button>
+              </form>
+            )}
           </div>
         </section>
       </main>
