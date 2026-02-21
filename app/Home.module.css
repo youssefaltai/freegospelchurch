@@ -447,13 +447,27 @@
   line-height: 1.2;
 }
 
+.leader-quote {
+  margin: 0 0 var(--space-md);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding-left: var(--space-md);
+  border-left: 3px solid var(--color-gold);
+}
+
 .leader-bio {
-  margin: 0;
+  margin: 0 0 var(--space-md);
   font-size: var(--text-base);
   line-height: 1.75;
   color: var(--color-text);
   padding-left: var(--space-md);
   border-left: 3px solid var(--color-gold);
+}
+
+.leader-bio:last-child {
+  margin-bottom: 0;
 }
 
 /* Contact */

@@ -21,14 +21,32 @@ export function LeadershipSection() {
               />
             </div>
             <div className={styles["leader-info"]}>
-              <p className={styles["leader-name"]}>Bishop Harold B. Smith</p>
+              <p className={styles["leader-name"]}>Harold B. Smith, Pastor</p>
+              <p className={styles["leader-quote"]}>
+                "Feed the flock of God which is among you, taking the oversight
+                thereof… being ensamples to the flock." — 1 Peter 5:2–3 (KJV)
+              </p>
               <p className={styles["leader-bio"]}>
-                Pastor of the Free Gospel Church, Inc. for 41 years, he is a
-                dedicated shepherd focused on making disciples in the local
-                church and supporting the surrounding community. A preacher and
-                teacher of God’s Word, Pastor Smith loves the people of God—all
-                are welcome when you visit. He married Margaret L. Smith 58
-                years ago; they have 3 sons and 1 daughter.
+                For 41 years, Pastor Smith has faithfully served as Pastor of
+                Free Gospel Church ministries, laboring in the vineyard of the
+                Lord with steadfast devotion and a heart for souls. He is
+                deeply committed to the full Gospel message and to the
+                Spirit-empowered work of making disciples within the local church
+                and throughout the surrounding community.
+              </p>
+              <p className={styles["leader-bio"]}>
+                As a preacher and teacher of the infallible Word of God, Pastor
+                Smith proclaims the truth of Scripture under the anointing of
+                the Holy Spirit, encouraging believers to grow in holiness,
+                faith, and obedience to Christ. His ministry reflects a sincere
+                love for the people of God, and all are warmly welcomed to
+                worship and fellowship.
+              </p>
+              <p className={styles["leader-bio"]}>
+                Pastor Smith has been united in marriage to Margaret L. Smith
+                for 58 years. The Lord has blessed their union with three sons
+                and one daughter, and they rejoice in God’s continued
+                faithfulness to their family and church family alike.
               </p>
             </div>
           </article>
@@ -44,13 +62,27 @@ export function LeadershipSection() {
             </div>
             <div className={styles["leader-info"]}>
               <p className={styles["leader-name"]}>Margaret L. Smith</p>
+              <p className={styles["leader-quote"]}>
+                "Her children arise up, and call her blessed… a woman that
+                feareth the Lord, she shall be praised." — Proverbs 31:28, 30
+                (KJV)
+              </p>
               <p className={styles["leader-bio"]}>
-                The motherly example who sets the atmosphere at the church. She
-                has labored tirelessly for the Lord beside her husband, devoted
-                to praying for and with souls. Her spirit of hospitality is
-                known to all. My prayers to God are that all mankind accepts and
-                receive Jesus Christ as their personal savior and to know that
-                he is a God of Love, Mercy, and Grace.
+                First Lady Margaret L. Smith has faithfully stood alongside
+                Pastor Smith for 41 years, serving the Lord and supporting the
+                ministry of Free Gospel Church of Culpeper with grace, humility,
+                and steadfast faith.
+              </p>
+              <p className={styles["leader-bio"]}>
+                A woman devoted to prayer, family, and the work of the Lord, she
+                is a source of encouragement and strength to many. Through her
+                quiet dedication and Christ-like spirit, she exemplifies godly
+                womanhood and sincere love for the people of God.
+              </p>
+              <p className={styles["leader-bio"]}>
+                "My prayers to God are that all mankind accepts and receive
+                Jesus Christ as their personal savior and to know that he is a
+                God of Love, Mercy, and Grace."
               </p>
             </div>
           </article>
