@@ -193,6 +193,9 @@ export default function ComingUpPage() {
                             <span className={comingUpStyles["event-title-short"]}>
                               {event.title}
                             </span>
+                            <span className={comingUpStyles["event-time-short"]}>
+                              {event.time}
+                            </span>
                           </div>
                         ))}
                       </div>

@@ -199,6 +199,14 @@
   line-height: 1.2;
 }
 
+.event-time-short {
+  font-size: var(--text-2xs);
+  color: var(--color-purple);
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
 /* Events Legend */
 .events-legend {
   background: rgba(255, 255, 255, 0.7);
@@ -301,6 +309,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .event-time-short {
+    font-size: var(--text-3xs);
   }
 
   .events-legend {
