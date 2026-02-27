@@ -100,10 +100,10 @@ export function ContactSection() {
                 <div className={styles["contact-item-text"]}>
                   <span className={styles["contact-item-label"]}>Phone</span>
                   <a
-                    href="tel:+15402725809"
+                    href="tel:+15402725810"
                     className={styles["contact-link"]}
                   >
-                    540-272-5809
+                    540-272-5810
                   </a>
                 </div>
               </div>
