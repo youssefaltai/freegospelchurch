@@ -98,7 +98,7 @@ export default function ExtraPage() {
 
         <section className={extraStyles["prayer-container"]}>
           <div className={extraStyles["prayer-inner"]}>
-            <h2 className={extraStyles["prayer-title"]}>Prayer Requests</h2>
+            <h2 className={extraStyles["prayer-title"]}>Prayer Requests & Praise Reports</h2>
 
             <p className={extraStyles["prayer-intro"]}>
               If you are in need of prayer, or have something exciting that you
