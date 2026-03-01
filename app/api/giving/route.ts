@@ -43,18 +43,27 @@ ${email ? `Email: ${email}` : 'Email: Not provided'}
     });
 
     if (result.error) {
-      console.error('Resend error:', result.error);
+      console.error('Resend error:', JSON.stringify(result.error, null, 2));
       return Response.json(
-        { success: false, error: 'Failed to send email' },
+        {
+          success: false,
+          error: result.error?.message || 'Failed to send email',
+          details: process.env.NODE_ENV === 'development' ? result.error : undefined
+        },
         { status: 500 }
       );
     }
 
     return Response.json({ success: true, id: result.data?.id });
   } catch (error) {
-    console.error('Giving submission error:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('Giving submission error:', errorMessage);
     return Response.json(
-      { success: false, error: 'Internal server error' },
+      {
+        success: false,
+        error: 'Internal server error',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     );
   }
