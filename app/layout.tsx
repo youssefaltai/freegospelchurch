@@ -18,9 +18,6 @@ export const metadata: Metadata = {
   title: "Free Gospel Church of Culpeper, Inc.",
   description:
     "Free Gospel Church of Culpeper, Inc. — Gather. Grow. Go. A local church passionate about entering into full fellowship with God's Kingdom.",
-  icons: {
-    icon: "/assets/logo.png",
-  },
 };
 
 export default function RootLayout({
