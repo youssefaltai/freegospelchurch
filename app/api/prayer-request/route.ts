@@ -66,8 +66,8 @@ Region: ${region || 'Not provided'}
 
     // Send email using Resend
     const result = await resend.emails.send({
-      from: 'info@culpeperfgc.org',
-      to: 'youssef.altai@icloud.com',
+      from: 'info@culperperfgc.org',
+      to: 'smitherama@aol.com',
       subject: subject,
       text: emailBody,
     });

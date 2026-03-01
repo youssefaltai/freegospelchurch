@@ -37,7 +37,7 @@ ${email ? `Email: ${email}` : 'Email: Not provided'}
     // Send email using Resend
     const result = await resend.emails.send({
       from: 'info@culpeperfgc.org',
-      to: 'youssef.altai@icloud.com',
+      to: 'smitherama@aol.com',
       subject: subject,
       text: emailBody,
     });
