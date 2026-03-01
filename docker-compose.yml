@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     networks:
       - web
+    env_file:
+      - .env.local
 
 networks:
   web:

@@ -9,6 +9,8 @@ import { FormEvent, useState } from "react";
 
 export default function GivingPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     amount: "",
     givingType: "tithe" as "tithe" | "offering",
@@ -31,21 +33,40 @@ export default function GivingPage() {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // For now, just show success message
-    // In the future, you can connect this to a backend
-    setIsSubmitted(true);
-    setFormData({
-      amount: "",
-      givingType: "tithe",
-      name: "",
-      email: "",
-    });
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 5000);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/giving", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+        setFormData({
+          amount: "",
+          givingType: "tithe",
+          name: "",
+          email: "",
+        });
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        const errorData = await res.json();
+        setError(errorData.error || "Failed to submit. Please try again.");
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+      console.error("Submission error:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <>
@@ -93,6 +114,15 @@ export default function GivingPage() {
                 <p className={givingStyles["success-text"]}>
                   We have received your contribution. Your generosity will make
                   a real difference in our ministry. God bless you.
+                </p>
+              </div>
+            ) : error ? (
+              <div className={givingStyles["error-message"]}>
+                <h3 className={givingStyles["error-title"]}>
+                  Oops, something went wrong
+                </h3>
+                <p className={givingStyles["error-text"]}>
+                  {error}
                 </p>
               </div>
             ) : (
@@ -182,8 +212,9 @@ export default function GivingPage() {
                 <button
                   type="submit"
                   className={givingStyles["form-button"]}
+                  disabled={isLoading}
                 >
-                  Give Now
+                  {isLoading ? "Processing..." : "Give Now"}
                 </button>
               </form>
             )}
