@@ -87,6 +87,16 @@ export function LeadershipSection() {
             </div>
           </article>
         </div>
+        <div className={styles["board-members"]}>
+          <h3>Board Members</h3>
+          <ul className={styles["board-list"]}>
+            <li>Harold Smith, President</li>
+            <li>Margaret Smith, Vice-President</li>
+            <li>Leon Brooks, Chairman</li>
+            <li>Joseph Jasper, Treasurer</li>
+            <li>Carolyn Jasper, Secretary</li>
+          </ul>
+        </div>
       </div>
     </section>
   );
