@@ -1,0 +1,109 @@
+.container {
+  padding: var(--space-2xl) var(--space-md);
+  background: var(--color-white);
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 0 var(--space-lg) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--color-purple);
+  border-bottom: 2px solid var(--color-gold);
+  padding-bottom: var(--space-sm);
+  display: inline-block;
+}
+
+.text {
+  max-width: 70ch;
+  margin: 0 0 var(--space-lg) 0;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+.subtitle {
+  margin: var(--space-xl) 0 var(--space-md) 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-purple);
+  letter-spacing: var(--tracking-tight);
+}
+
+.list {
+  max-width: 70ch;
+  margin: 0 0 var(--space-lg) 0;
+  padding-left: var(--space-lg);
+  list-style: none;
+}
+
+.list li {
+  position: relative;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 8px;
+  height: 8px;
+  background: var(--color-gold);
+  border-radius: 50%;
+}
+
+.donate-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-xl);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-purple);
+  background: var(--color-gold);
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.donate-button:hover {
+  background: #d4af37;
+}
+
+.donate-button:focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: 2px;
+}
+
+.donate-button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 639px) {
+  .container {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .title {
+    font-size: var(--text-3xl);
+  }
+}
