@@ -17,6 +17,15 @@ interface RecurringEvent {
   isFirstSunday?: boolean; // Special flag for first Sunday events
 }
 
+interface SpecificDateEvent {
+  id: string;
+  title: string;
+  date: string; // YYYY-MM-DD
+  time: string;
+  location: string;
+  description: string;
+}
+
 // Real church events - add new events here
 const recurringEvents: RecurringEvent[] = [
   {
@@ -45,9 +54,37 @@ const recurringEvents: RecurringEvent[] = [
   },
 ];
 
-function getEventsForDate(date: Date): RecurringEvent[] {
+// One-time / specific-date events
+const specificDateEvents: SpecificDateEvent[] = [
+  {
+    id: "sd-1",
+    title: "Holy Communion Service",
+    date: "2026-04-01",
+    time: "6:00 PM",
+    location: "Main Sanctuary",
+    description: "Join us for a special midweek Holy Communion Service.",
+  },
+  {
+    id: "sd-2",
+    title: "Resurrection Sunday",
+    date: "2026-04-05",
+    time: "11:00 AM",
+    location: "Main Sanctuary",
+    description: "Celebrate the resurrection of our Lord Jesus Christ!",
+  },
+  {
+    id: "sd-3",
+    title: "Community Event: Aging Together Session Training",
+    date: "2026-05-02",
+    time: "1:00 PM",
+    location: "Main Sanctuary",
+    description: "A community training session focused on aging together.",
+  },
+];
+
+function getEventsForDate(date: Date): (RecurringEvent | SpecificDateEvent)[] {
   const dayOfWeek = date.getDay();
-  const events: RecurringEvent[] = [];
+  const events: (RecurringEvent | SpecificDateEvent)[] = [];
 
   recurringEvents.forEach((event) => {
     // Check if event matches day of week
@@ -61,6 +98,14 @@ function getEventsForDate(date: Date): RecurringEvent[] {
       if (dateNum >= 1 && dateNum <= 7) {
         events.push(event);
       }
+    }
+  });
+
+  // Check specific-date events
+  const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+  specificDateEvents.forEach((event) => {
+    if (event.date === dateStr) {
+      events.push(event);
     }
   });
 
@@ -206,7 +251,7 @@ export default function ComingUpPage() {
             </div>
 
             <div className={comingUpStyles["events-legend"]}>
-              <h3 className={comingUpStyles["legend-title"]}>Events</h3>
+              <h3 className={comingUpStyles["legend-title"]}>Weekly Services</h3>
               {recurringEvents.map((event) => (
                 <div
                   key={event.id}
@@ -227,6 +272,40 @@ export default function ComingUpPage() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className={comingUpStyles["events-legend"]}>
+              <h3 className={comingUpStyles["legend-title"]}>Upcoming Events</h3>
+              {specificDateEvents.map((event) => {
+                const [y, m, d] = event.date.split("-").map(Number);
+                const eventDate = new Date(y, m - 1, d);
+                const formatted = eventDate.toLocaleDateString("en-US", {
+                  weekday: "long",
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                });
+                return (
+                  <div
+                    key={event.id}
+                    className={comingUpStyles["legend-item"]}
+                  >
+                    <div className={comingUpStyles["legend-content"]}>
+                      <p className={comingUpStyles["legend-event-title"]}>
+                        {event.title}
+                      </p>
+                      <p className={comingUpStyles["legend-event-time"]}>
+                        {formatted} • {event.time} • {event.location}
+                      </p>
+                      {event.description && (
+                        <p className={comingUpStyles["legend-event-description"]}>
+                          {event.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
