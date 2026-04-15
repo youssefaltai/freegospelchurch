@@ -6,7 +6,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const { amount, givingType, name, email } = body;
+    const { amount, givingType, name, email, memo } = body;
 
     // Validate required fields
     if (!amount || !givingType) {
@@ -16,18 +16,21 @@ export async function POST(request: Request) {
       );
     }
 
+    // Format giving type label
+    const typeLabel =
+      givingType === 'tithe' ? 'Tithe' : givingType === 'donation' ? 'Donation' : 'Offering';
+
     // Format subject line
-    const subject = `New Giving Submission – ${
-      givingType === 'tithe' ? 'Tithe' : 'Offering'
-    }`;
+    const subject = `New Giving Submission – ${typeLabel}`;
 
     // Format email body
     const emailBody = `
 New Giving Submission
 ========================================
 
-Type: ${givingType === 'tithe' ? 'Tithe' : 'Offering'}
+Type: ${typeLabel}
 Amount: $${parseFloat(amount).toFixed(2)}
+${memo ? `Memo: ${memo}` : ''}
 
 Submitter Information:
 ${name ? `Name: ${name}` : 'Name: Not provided'}

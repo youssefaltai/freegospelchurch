@@ -13,12 +13,13 @@ export default function GivingPage() {
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     amount: "",
-    givingType: "tithe" as "tithe" | "offering",
+    givingType: "tithe" as "tithe" | "offering" | "donation",
     name: "",
     email: "",
+    memo: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -26,7 +27,7 @@ export default function GivingPage() {
     }));
   };
 
-  const handleGivingTypeChange = (givingType: "tithe" | "offering") => {
+  const handleGivingTypeChange = (givingType: "tithe" | "offering" | "donation") => {
     setFormData((prev) => ({
       ...prev,
       givingType,
@@ -52,6 +53,7 @@ export default function GivingPage() {
           givingType: "tithe",
           name: "",
           email: "",
+          memo: "",
         });
         // Reset form after 5 seconds
         setTimeout(() => {
@@ -176,6 +178,17 @@ export default function GivingPage() {
                     >
                       Offering
                     </button>
+                    <button
+                      type="button"
+                      className={`${givingStyles["toggle-btn"]} ${
+                        formData.givingType === "donation"
+                          ? givingStyles["active"]
+                          : ""
+                      }`}
+                      onClick={() => handleGivingTypeChange("donation")}
+                    >
+                      Donation
+                    </button>
                   </div>
                 </div>
 
@@ -206,6 +219,21 @@ export default function GivingPage() {
                     onChange={handleChange}
                     className={givingStyles["form-input"]}
                     placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <div className={givingStyles["form-group"]}>
+                  <label htmlFor="memo" className={givingStyles["form-label"]}>
+                    Memo
+                  </label>
+                  <textarea
+                    id="memo"
+                    name="memo"
+                    value={formData.memo}
+                    onChange={handleChange}
+                    className={givingStyles["form-input"]}
+                    placeholder="Designate what you would like your donation to be used for"
+                    rows={3}
                   />
                 </div>
 
