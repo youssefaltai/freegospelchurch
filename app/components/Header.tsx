@@ -44,6 +44,9 @@ export function Header() {
               <Link href="/revitalization">Revitalization Project</Link>
             </li>
             <li>
+              <Link href="/gallery">Gallery</Link>
+            </li>
+            <li>
               <Link href="/contact-us">Contact</Link>
             </li>
           </ul>
